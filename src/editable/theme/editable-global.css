@@ -12,7 +12,7 @@
   Do not add data fetching, scripts, or route logic here.
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 /* Per-task display + body typefaces (consumed via task-themes.ts). */
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
@@ -26,8 +26,8 @@ body {
 
 .editable-site-root {
   /* Yelp-style clean sans, used for both display and body. */
-  --editable-font-display: 'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
-  --editable-font-body: 'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --editable-font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --editable-font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
   /* Premium easing curve used across every hover + transition. */
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
   font-family: var(--editable-font-body);
@@ -97,9 +97,28 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--slot4-accent-fill) 28%, transparent);
-  color: var(--slot4-page-text);
+  background: #073032;
+  color: #74f0ca;
 }
+
+@keyframes fa-marquee { to { transform: translateX(calc(-50% - 10px)); } }
+@keyframes fa-reveal { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes fa-float { 50% { transform: translateY(-12px) rotate(7deg); } }
+.fa-hero-marquee { animation: fa-marquee 34s linear infinite; }
+.fa-auto-track { animation: fa-marquee 42s linear infinite; }
+.fa-auto-rail:hover .fa-auto-track, .fa-hero-marquee:hover { animation-play-state: paused; }
+.fa-reveal { animation: fa-reveal .8s cubic-bezier(.22,1,.36,1) both; }
+.fa-reveal:nth-child(2) { animation-delay: .08s; }
+.fa-reveal:nth-child(3) { animation-delay: .16s; }
+.fa-reveal:nth-child(4) { animation-delay: .24s; }
+.fa-float { animation: fa-float 5s ease-in-out infinite; }
+.fa-shape { border-radius: 72px 24px 72px 24px; }
+.fa-shape.shape-1 { border-radius: 28px 92px 28px 92px; }
+.fa-shape.shape-2 { border-radius: 999px 999px 28px 28px; }
+.fa-shape.shape-3 { border-radius: 92px 28px 92px 28px; }
+.fa-shape.shape-4 { border-radius: 28px 28px 999px 999px; }
+.fa-info-card { min-height: 390px; border-radius: 26px; padding: 32px; transition: transform .35s var(--ease-premium); }
+.fa-info-card:hover { transform: translateY(-7px) rotate(-.5deg); }
 
 ::-webkit-scrollbar-track {
   background: color-mix(in oklab, var(--slot4-page-bg) 88%, black);
