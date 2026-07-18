@@ -3,16 +3,16 @@ import { slot4BrandConfig } from '@/editable/theme/brand.config'
 export const pagesContent = {
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
-      description: 'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
+      title: 'Useful classifieds and local offers',
+      description: 'Discover products, services, jobs, rentals, and current classified opportunities.',
       openGraphTitle: 'Stories, visuals, and discoverable content',
       openGraphDescription: 'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
       keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
     },
     hero: {
-      badge: 'Latest stories and visuals',
-      title: ['A thoughtful home for', 'stories, visuals, and discovery.'],
-      description: 'Explore fresh articles, image-led posts, and discoverable content across the platform through a calmer and clearer browsing experience.',
+      badge: 'Focused classifieds',
+      title: ['Find the right', 'offer.'],
+      description: 'Explore useful products, services, jobs, rentals, and opportunities in one clear place.',
       primaryCta: { label: 'Read latest stories', href: '/article' },
       secondaryCta: { label: 'Explore visuals', href: '/image' },
       searchPlaceholder: 'Search stories, visuals, listings, and more',
@@ -53,8 +53,8 @@ export const pagesContent = {
   },
   about: {
     badge: 'Our Story',
-    title: 'A calmer, clearer way to explore content.',
-    description: `${slot4BrandConfig.siteName} is built to make long-form reading, visual discovery, and supporting resources feel like one unified experience.`,
+    title: 'A clearer way to find opportunities and people.',
+    description: `${slot4BrandConfig.siteName} brings useful classifieds and professional profiles together in one approachable experience.`,
     paragraphs: [
       'Instead of splitting everything into disconnected pages, the platform keeps related content easy to move through and easy to understand.',
       'Whether someone starts with an article, listing, image post, or resource page, they can continue exploring without losing context.',
