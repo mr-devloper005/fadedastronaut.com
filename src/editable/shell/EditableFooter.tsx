@@ -1,58 +1,6 @@
 'use client'
-
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/site-config'
-import { globalContent } from '@/editable/content/global.content'
 import { useEditableLocalAuthSession } from '@/editable/components/EditableLocalAuthForms'
-
-export function EditableFooter() {
-  const taskLinks = SITE_CONFIG.tasks.filter((task) => task.enabled)
-  const year = new Date().getFullYear()
-  const { session, logout } = useEditableLocalAuthSession()
-
-  return (
-    <footer className="border-t border-[var(--editable-border)] bg-[var(--editable-footer-bg)] text-[var(--editable-footer-text)]">
-      <div className="h-[2px] bg-[linear-gradient(90deg,transparent_0%,var(--slot4-accent)_50%,transparent_100%)]" />
-      <div className="mx-auto grid max-w-[var(--editable-container)] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
-        <div>
-          <Link href="/" className="inline-flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center border border-[var(--slot4-accent)]/40 bg-[var(--slot4-surface-bg)]">
-              <img src="/favicon.png?v=20260413" alt={SITE_CONFIG.name} className="h-8 w-8 object-contain" />
-            </span>
-            <span className="editable-display text-xl font-semibold tracking-[0.01em]">{SITE_CONFIG.name}</span>
-          </Link>
-          <p className="mt-4 max-w-md text-sm leading-7 text-[var(--slot4-muted-text)]">{globalContent.footer?.description || SITE_CONFIG.description}</p>
-        </div>
-
-        <div>
-          <h3 className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[var(--slot4-accent)]">Explore</h3>
-          <div className="mt-4 grid gap-2">
-            {taskLinks.map((task) => (
-              <Link key={task.key} href={task.route} className="inline-flex items-center gap-2 text-sm font-medium text-[var(--slot4-muted-text)] transition hover:text-[var(--slot4-page-text)]">
-                {task.label} <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h3 className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[var(--slot4-accent)]">Site</h3>
-          <div className="mt-4 grid gap-2">
-            {[
-              ['About', '/about'],
-              ['Contact', '/contact'],
-              ...(session ? [['Create', '/create']] : [['Login', '/login'], ['Sign up', '/signup']]),
-            ].map(([label, href]) => (
-              <Link key={href} href={href} className="text-sm font-medium text-[var(--slot4-muted-text)] transition hover:text-[var(--slot4-page-text)]">{label}</Link>
-            ))}
-            {session ? <button type="button" onClick={logout} className="text-left text-sm font-medium text-[var(--slot4-muted-text)] transition hover:text-[var(--slot4-page-text)]">Logout</button> : null}
-          </div>
-        </div>
-      </div>
-      <div className="border-t border-[var(--editable-border)] px-4 py-5 text-center text-xs font-medium tracking-[0.12em] text-[var(--slot4-muted-text)]">
-        © {year} {SITE_CONFIG.name}. All rights reserved.
-      </div>
-    </footer>
-  )
-}
+const links=[{label:'Classified',href:'/classified'},{label:'Home',href:'/'},{label:'About',href:'/about'},{label:'Search',href:'/search'}]
+export function EditableFooter(){const{session,logout}=useEditableLocalAuthSession();return <footer className="bg-[#073032] text-white"><div className="mx-auto grid max-w-[1280px] gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.3fr_.8fr_.8fr]"><div><Link href="/" className="editable-display inline-flex items-center gap-4 text-2xl font-extrabold"><span className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[22px] bg-white/10 p-1.5"><img src="/favicon.png" alt="" className="h-full w-full scale-110 object-contain" /></span><span>{SITE_CONFIG.name}</span></Link><p className="mt-5 max-w-md leading-7 text-white/65">A clear place to discover useful classifieds, services, products, rentals, jobs, and local offers.</p></div><div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#42dfb2]">Explore</p><div className="mt-5 grid gap-3">{links.map(i=><Link key={i.href} href={i.href} className="text-sm font-semibold text-white/75 hover:text-white">{i.label}</Link>)}</div></div><div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#42dfb2]">Account</p><div className="mt-5 grid gap-3">{session?<><Link href="/create" className="text-sm font-semibold text-white/75 hover:text-white">Create</Link><button onClick={logout} className="text-left text-sm font-semibold text-white/75 hover:text-white">Logout</button></>:<><Link href="/login" className="text-sm font-semibold text-white/75 hover:text-white">Login</Link><Link href="/signup" className="text-sm font-semibold text-white/75 hover:text-white">Sign up</Link></>}</div></div></div><div className="border-t border-white/10 px-5 py-5 text-center text-xs text-white/50">© {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</div></footer>}
