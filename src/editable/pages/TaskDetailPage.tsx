@@ -366,10 +366,11 @@ function PdfDetail({ post, related }: { post: SitePost; related: SitePost[] }) {
 function ProfileDetail({ post, related }: { post: SitePost; related: SitePost[] }) {
   const images = getImages(post)
   const role = getField(post, ['role', 'designation', 'company', 'location'])
+  const website = getField(post, ['website', 'url', 'link'])
   return (
     <>
       <section className="bg-[#e4faf3]"><div className="mx-auto max-w-[var(--editable-container)] px-6 py-12 sm:py-16 lg:px-8"><BackLink task="profile" /><div className="mt-10 grid items-end gap-9 lg:grid-cols-[320px_minmax(0,1fr)]"><div className="flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[36px_36px_100px_36px] bg-white shadow-[0_28px_70px_rgba(7,48,50,.13)]">{images[0] ? <img src={images[0]} alt="" className="h-full w-full object-cover" /> : <UserRound className="h-24 w-24 text-[var(--tk-accent)]/40" />}</div><div className="pb-4"><Kicker task="profile">Professional profile</Kicker><h1 className="editable-display mt-5 text-5xl font-semibold leading-[.98] tracking-[-0.055em] sm:text-7xl">{post.title}</h1>{role ? <p className="mt-5 text-lg font-semibold text-[var(--tk-accent)]">{role}</p> : null}<DetailMeta post={post} /></div></div></div></section>
-      <section className="mx-auto max-w-[var(--editable-container)] px-6 py-16 sm:py-20 lg:px-8"><article className="max-w-4xl"><p className="text-xs font-bold uppercase tracking-[.2em] text-[var(--tk-accent)]">About</p><BodyContent post={post} /><ImageStrip images={images.slice(1)} label="Work and gallery" /></article></section>
+      <section className="mx-auto max-w-[var(--editable-container)] px-6 py-16 sm:py-20 lg:px-8"><article className="max-w-4xl"><p className="text-xs font-bold uppercase tracking-[.2em] text-[var(--tk-accent)]">About</p><BodyContent post={post} /><ImageStrip images={images.slice(1)} label="Work and gallery" />{website ? <div className="mt-8"><Link href={`${website}/about`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[var(--tk-accent)] px-5 py-3 text-sm font-semibold text-[var(--tk-on-accent)] transition hover:opacity-90">About Us <ArrowUpRight className="h-4 w-4" /></Link></div> : null}</article></section>
       <RelatedStrip task="profile" related={related} />
     </>
   )
@@ -452,7 +453,7 @@ function BadgeLine({ label, value }: { label: string; value: string }) {
   )
 }
 
-function RelatedPanel({ task, post, related }: { task: TaskKey; post: SitePost; related: SitePost[] }) {
+function RelatedPanel({ task, post: _post, related }: { task: TaskKey; post: SitePost; related: SitePost[] }) {
   const taskConfig = getTaskConfig(task)
   return (
     <div className="space-y-6">
